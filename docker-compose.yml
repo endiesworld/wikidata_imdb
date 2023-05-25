@@ -1,6 +1,6 @@
 version: "3.9"
 services:
-  duro-backend:
+  imdb-backend:
     restart: unless-stopped
     env_file:
       - .env
@@ -8,7 +8,7 @@ services:
       context: ./
       dockerfile: ./Dockerfile
       labels:
-        - duro-backend
+        - imdb-backend
       args:
         - stage=${STAGE:-none}
     volumes:

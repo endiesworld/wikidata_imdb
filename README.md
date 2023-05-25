@@ -1,4 +1,4 @@
-# The Duro API
+# The Imdb API
 
 ## Prerequisites
 1. `docker` environment
@@ -19,4 +19,19 @@ cp .env.example .env
 > python -m venv venv
 > source ./venv/bin/activate
 > pip install pip-tools
+> make dependencies
+```
 
+### 3. Run dev version
+``` Bash
+> make dev
+```
+
+Then open `http://localhost:<port_defined_in_env>/api/docs`
+
+### 4. Setup Development Environment for IDEs
+After running #2
+``` Bash
+> pip-sync requirements-dev.txt
+> code .
+```
