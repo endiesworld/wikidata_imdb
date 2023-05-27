@@ -58,7 +58,7 @@ def run_migrations_online() -> None:
         alembic.context.configure(connection=connection, target_metadata=None)
         with alembic.context.begin_transaction():
             alembic.context.run_migrations()
-
+            print("Migrating database successfully")
 
 def run_migrations_offline() -> None:
     """
