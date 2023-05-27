@@ -1,4 +1,3 @@
-import uuid
 from typing import List, Optional
 
 from app.db.base import BaseRepository

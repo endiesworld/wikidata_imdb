@@ -22,7 +22,6 @@ def create_movies_table():
         sa.Column("id", sa.INTEGER, primary_key=True, autoincrement=True, server_default="1"),
         sa.Column("imdb_id", sa.VARCHAR(10), nullable=False, index=True),
         sa.Column("title", sa.VARCHAR, nullable=False, index=True),
-        sa.Column("cost", sa.INTEGER, nullable=True),
         sa.Column("icaa_rating", sa.VARCHAR, nullable=True),
         sa.Column("created_at", sa.TIMESTAMP, nullable=True),
         sa.Column("updated_at", sa.TIMESTAMP, nullable=True),

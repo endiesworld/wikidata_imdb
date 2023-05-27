@@ -14,7 +14,7 @@ class CoreModel(BaseModel):
 
 
 class IDModelMixin(CoreModel):
-    id: Optional[uuid.UUID] = None
+    id: Optional[int] = None
 
     # For Deduplication
     def __eq__(self, other):
