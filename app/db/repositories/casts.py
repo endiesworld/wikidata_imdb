@@ -10,6 +10,7 @@ from app.models.domains.cast import (
 NEW_CAST_SQL = """
     INSERT INTO casts(imdb_id, name)
     VALUES(:imdb_id, :name)
+    ON CONFLICT (imdb_id, name) DO NOTHING
     RETURNING id;
 """
 

@@ -14,7 +14,6 @@ from . import crud
 async def fn_create_movie(
     imdb_id: str,
     title: str,
-    cost: int,
     icaa_rating: str,
     movies_repo: MoviesRepository,
     *,
@@ -30,6 +29,9 @@ async def fn_create_movie(
             
         return None
     
-    movie = NewMovie(imdb_id=imdb_id, title=title, cost=cost, icaa_rating=icaa_rating)
+    movie = NewMovie(imdb_id=imdb_id, title=title, icaa_rating=icaa_rating)
     
     return crud.fn_create_movie(movie=movie, movies_repo=movies_repo)
+
+
+fn_get_movie_by_imdb = crud.fn_get_movie_by_imdb

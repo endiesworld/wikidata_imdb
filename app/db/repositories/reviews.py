@@ -28,7 +28,7 @@ class ReviewsRepository(BaseRepository):
         )
         return IDModelMixin(**created_review)
     
-    async def get_Review_imdb(
+    async def get_review_imdb(
         self, *, imdb: str
     ) -> Review:
         query_values = {"imdb": imdb}
