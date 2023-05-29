@@ -1,8 +1,8 @@
-"""create genres_table
+"""create reviews_table
 
-Revision ID: a6ffd240dc42
-Revises: 7deafa202989
-Create Date: 2023-05-27 11:37:30.608453
+Revision ID: bcdcc98ce46e
+Revises: a6ffd240dc42
+Create Date: 2023-05-29 12:52:13.639437
 
 """
 from alembic import op
@@ -10,31 +10,31 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'a6ffd240dc42'
-down_revision = '7deafa202989'
+revision = 'bcdcc98ce46e'
+down_revision = 'a6ffd240dc42'
 branch_labels = None
 depends_on = None
 
 
-def create_genres_table():
+def create_reviews_table():
     op.create_table(
-        "genres",
+        "reviews",
         sa.Column("id", sa.INTEGER, primary_key=True, autoincrement=True, server_default="1"),
         sa.Column("imdb_id", sa.VARCHAR(10), nullable=False, index=True),
-        sa.Column("genre", sa.VARCHAR, nullable=True),
+        sa.Column("rating", sa.VARCHAR, nullable=True),
         sa.Column("created_at", sa.TIMESTAMP, nullable=True),
         sa.Column("updated_at", sa.TIMESTAMP, nullable=True),
     )
 
 def create_constraints():
     op.create_unique_constraint(
-        "genres_unique_constraint",
-        "genres",
-        ["imdb_id", "genre"]
+        "reviews_unique_constraint",
+        "reviews",
+        ["imdb_id", "rating"]
     )
     op.create_foreign_key(
-            "fk_genres_imdb_id",
-            "genres",
+            "fk_reviews_imdb_id",
+            "reviews",
             "movies",
             ["imdb_id"],
             ["imdb_id"],
@@ -42,9 +42,9 @@ def create_constraints():
         )
 
 def upgrade() -> None:
-    create_genres_table()
+    create_reviews_table()
     create_constraints()
 
 
 def downgrade() -> None:
-    op.drop_table("genres")
+    op.drop_table("reviews")

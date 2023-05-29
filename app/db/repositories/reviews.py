@@ -10,6 +10,7 @@ from app.models.domains.review import (
 NEW_REVIEW_SQL = """
     INSERT INTO reviews(imdb_id, rating)
     VALUES(:imdb_id, :rating)
+    ON CONFLICT (imdb_id, rating) DO NOTHING
     RETURNING id;
 """
 

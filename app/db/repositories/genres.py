@@ -10,6 +10,7 @@ from app.models.domains.genre import (
 NEW_GENRE_SQL = """
     INSERT INTO genres(imdb_id, genre)
     VALUES(:imdb_id, :genre)
+    ON CONFLICT (imdb_id, genre) DO NOTHING
     RETURNING id;
 """
 

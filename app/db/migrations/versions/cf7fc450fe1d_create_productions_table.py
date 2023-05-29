@@ -25,6 +25,7 @@ def create_productions_table():
         sa.Column("country", sa.VARCHAR, nullable=True),
         sa.Column("producer", sa.VARCHAR, nullable=True),
         sa.Column("language", sa.VARCHAR, nullable=True),
+        sa.Column("duration", sa.VARCHAR, nullable=True),
         sa.Column("distributor", sa.VARCHAR, nullable=True),
         sa.Column("company", sa.VARCHAR, nullable=True),
         sa.Column("cost", sa.INTEGER, nullable=True),
@@ -34,6 +35,12 @@ def create_productions_table():
     )
 
 def create_constraints():
+    op.create_unique_constraint(
+        "productions_unique_constraint",
+        "productions",
+        ["imdb_id", "director", "country", "producer","language", "duration",
+         "distributor", "company", "cost", "date"]
+    )
     op.create_foreign_key(
             "fk_productions_imdb_id",
             "productions",

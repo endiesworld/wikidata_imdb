@@ -8,13 +8,13 @@ from app.models.domains.movie import (
 )
 
 NEW_MOVIE_SQL = """
-    INSERT INTO movies(imdb_id, title, cost, icaa_rating)
-    VALUES(:imdb_id, :title, :cost, :icaa_rating)
+    INSERT INTO movies(imdb_id, title, icaa_rating)
+    VALUES(:imdb_id, :title, :icaa_rating)
     RETURNING id;
 """
 
 GET_MOVIE_IMDB_SQL = """
-    SELECT imdb_id, title, cost,icaa_rating FROM movies WHERE imdb_id = :imdb_id;
+    SELECT imdb_id, title, icaa_rating FROM movies WHERE imdb_id = :imdb_id;
 """
 
 class MoviesRepository(BaseRepository):

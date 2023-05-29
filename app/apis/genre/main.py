@@ -13,11 +13,11 @@ from . import crud
 
 async def fn_create_genre(
     imdb_id: str,
-    name: str,
+    genre: str,
     genres_repo: GenresRepository,
 ) -> IDModelMixin:
     
-    new_genre = NewGenre(imdb_id=imdb_id, name=name,)
+    new_genre = NewGenre(imdb_id=imdb_id, genre=genre)
     return await crud.fn_create_genre( new_genre=new_genre, genres_repo=genres_repo)
     
 

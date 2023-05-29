@@ -1,1 +1,2 @@
-from crud import fn_get_movie_by_imdb, fn_create_movie
+from .crud import fn_get_movie_by_imdb
+from .main import fn_create_movie

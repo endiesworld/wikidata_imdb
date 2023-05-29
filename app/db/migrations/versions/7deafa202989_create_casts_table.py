@@ -27,6 +27,11 @@ def create_casts_table():
     )
 
 def create_constraints():
+    op.create_unique_constraint(
+        "casts_unique_constraint",
+        "casts",
+        ["imdb_id", "name"]
+    )
     op.create_foreign_key(
             "fk_casts_imdb_id",
             "casts",

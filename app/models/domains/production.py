@@ -4,6 +4,7 @@ class Production(TimestampsMixin, IDModelMixin):
     imdb_id: str
     director: str
     country: str
+    duration: str
     producer: str
     language: str
     distributor: str
