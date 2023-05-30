@@ -22,9 +22,9 @@ cp .env.example .env
 > make dependencies
 ```
 
-### 3. Run dev version
+### 3. Run dev version, please refer to the Makefile for other options and operations.
 ``` Bash
-> make dev
+> make devlocal 
 ```
 
 Then open `http://localhost:<port_defined_in_env>/api/docs`
@@ -35,3 +35,5 @@ After running #2
 > pip-sync requirements-dev.txt
 > code .
 ```
+
+### 5. query LIMIT for wikidata moview in directory "app.apis.wikidata" was reduced to 3 for test purposes only, and can be increased to 10000 for normal operation 
