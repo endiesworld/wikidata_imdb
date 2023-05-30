@@ -1,6 +1,6 @@
 from typing import Any, List, Optional
 
-from fastapi import APIRouter, Depends, Request, Response, status
+from fastapi import APIRouter, Depends, Request, status
 
 from app.apis.movie import fn_get_movies, fn_get_movie_details
 from app.db.dependency import get_repository

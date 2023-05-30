@@ -22,8 +22,6 @@ from app.db.repositories import (
 
 from app.modules.users.database import User
 
-from . import seed
-
 
 @pytest_asyncio.fixture
 def platform_headers():
