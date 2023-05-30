@@ -1,12 +1,13 @@
 from typing import Optional
 
+from fastapi import status
 from SPARQLWrapper import SPARQLWrapper, JSON
+from app.models.core import StatusResponse
 
 from app.apis.movie import fn_create_movie
 from app.apis.production import fn_create_production
 from app.apis.genre import fn_create_genre
 from app.apis.review import fn_create_review
-from app.apis.cast import fn_create_cast
 
 from app.db.repositories import MoviesRepository
 from app.db.repositories import GenresRepository
@@ -62,21 +63,18 @@ WHERE {
     ?cost rdfs:label ?costLabel.
     ?icaa_rating rdfs:label ?icaa_ratingLabel.
   }
-
 }
-{}
+LIMIT 20000
 """
 
-async def fn_create_review(
+async def fn_query_wikidata_movies(
     movies_repo: MoviesRepository,
     genres_repo: GenresRepository,
     productions_repo: ProductionsRepository,
     reviews_repo: ReviewsRepository,
-    query_limit: Optional[int] = 10,
 ) :
-    limit = "LIMIT {}".format(query_limit)
     # Set the query and response format
-    sparql.setQuery(FETCH_MOVIE_DATA_SPARQL.format(limit))
+    sparql.setQuery(FETCH_MOVIE_DATA_SPARQL)
     sparql.setReturnFormat(JSON)
 
     # Execute the SPARQL query and get the results
@@ -105,3 +103,8 @@ async def fn_create_review(
             imdb_id, director, country, duration, producer, language, distributor, company, cost, date, productions_repo
         )
         await fn_create_review( imdb_id, review, reviews_repo )
+
+    return StatusResponse(
+        status = status.HTTP_201_CREATED,
+        details = "Movies laoded from wikidata successfully"
+    )

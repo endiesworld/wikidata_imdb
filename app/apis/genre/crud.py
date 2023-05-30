@@ -13,9 +13,9 @@ async def fn_create_genre(
     )
     
 async def fn_get_genre_by_imdb(
-    imdb: str,
+    imdb_id: str,
     genres_repo: GenresRepository,
 ) -> Genre:
     return await genres_repo.get_genre_imdb(
-        imdb=imdb,
+        imdb_id=imdb_id,
     )

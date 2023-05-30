@@ -163,6 +163,8 @@ sniffio==1.3.0
     #   asgi-lifespan
     #   httpcore
     #   httpx
+SPARQLWrapper==2.0.0
+
 sqlalchemy[asyncio]==1.4.41
     # via
     #   alembic

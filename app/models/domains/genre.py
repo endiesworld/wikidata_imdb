@@ -1,11 +1,11 @@
-from app.models.core import IDModelMixin, TimestampsMixin
+from app.models.core import IDModelMixin, TimestampsMixin, CoreModel
 
-class Genre(TimestampsMixin, IDModelMixin):
+class Genre(CoreModel):
     imdb_id: str
     genre: str
     
     
-class GenreDBModel(Genre):
+class GenreDBModel(Genre, TimestampsMixin):
     ...
 
 

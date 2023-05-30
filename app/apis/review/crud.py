@@ -13,9 +13,9 @@ async def fn_create_review(
     )
     
 async def fn_get_review_by_imdb(
-    imdb: str,
+    imdb_id: str,
     reviews_repo: ReviewsRepository,
 ) -> Review:
     return await reviews_repo.get_review_imdb(
-        imdb=imdb,
+        imdb_id=imdb_id,
     )

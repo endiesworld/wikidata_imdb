@@ -1,6 +1,6 @@
-from app.models.core import IDModelMixin, TimestampsMixin
+from app.models.core import IDModelMixin, TimestampsMixin, CoreModel
 
-class Production(TimestampsMixin, IDModelMixin):
+class Production(CoreModel):
     imdb_id: str
     director: str
     country: str
@@ -13,7 +13,7 @@ class Production(TimestampsMixin, IDModelMixin):
     date: str
     
     
-class ProductionDBModel(Production):
+class ProductionDBModel(Production,TimestampsMixin):
     ...
 
 

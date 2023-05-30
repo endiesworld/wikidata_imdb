@@ -13,9 +13,9 @@ async def fn_create_production(
     )
     
 async def fn_get_production_by_imdb(
-    imdb: str,
+    imdb_id: str,
     productions_repo: ProductionsRepository,
 ) -> Production:
     return await productions_repo.get_production_imdb(
-        imdb=imdb,
+        imdb_id=imdb_id,
     )

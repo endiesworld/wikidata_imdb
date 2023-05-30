@@ -1,11 +1,11 @@
-from app.models.core import IDModelMixin, TimestampsMixin
+from app.models.core import TimestampsMixin, CoreModel
 
-class Cast(TimestampsMixin, IDModelMixin):
+class Cast(CoreModel):
     imdb_id: str
     name: str
     
     
-class CastDBModel(Cast):
+class CastDBModel(Cast, TimestampsMixin):
     ...
 
 

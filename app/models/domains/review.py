@@ -1,11 +1,11 @@
-from app.models.core import IDModelMixin, TimestampsMixin
+from app.models.core import IDModelMixin, TimestampsMixin, CoreModel
 
-class Review(TimestampsMixin, IDModelMixin):
+class Review(CoreModel):
     imdb_id: str
     rating: str
     
     
-class ReviewDBModel(Review):
+class ReviewDBModel(Review,TimestampsMixin):
     ...
 
 

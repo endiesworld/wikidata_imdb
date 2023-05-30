@@ -19,7 +19,6 @@ depends_on = None
 def create_productions_table():
     op.create_table(
         "productions",
-        sa.Column("id", sa.INTEGER, primary_key=True, autoincrement=True, server_default="1"),
         sa.Column("imdb_id", sa.VARCHAR(10), nullable=False, index=True),
         sa.Column("director", sa.VARCHAR, nullable=True),
         sa.Column("country", sa.VARCHAR, nullable=True),
@@ -30,7 +29,7 @@ def create_productions_table():
         sa.Column("company", sa.VARCHAR, nullable=True),
         sa.Column("cost", sa.INTEGER, nullable=True),
         sa.Column("date", sa.VARCHAR, nullable=True),
-        sa.Column("created_at", sa.TIMESTAMP, nullable=True),
+        sa.Column("created_at", sa.TIMESTAMP, nullable=True, server_default=sa.text("now()")),
         sa.Column("updated_at", sa.TIMESTAMP, nullable=True),
     )
 

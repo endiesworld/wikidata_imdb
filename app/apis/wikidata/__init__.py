@@ -1,0 +1,1 @@
+from .main import fn_query_wikidata_movies

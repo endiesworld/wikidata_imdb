@@ -1,14 +1,13 @@
-from app.models.core import IDModelMixin, TimestampsMixin
+from app.models.core import IDModelMixin, TimestampsMixin, CoreModel
 
-class Movie(TimestampsMixin, IDModelMixin):
+class Movie(CoreModel):
     imdb_id: str
     title: str
-    cost: int
     icaa_rating: str
 
 
-class MovieDBModel(Movie):
-    id: int
+class MovieDBModel(Movie, TimestampsMixin):
+    ...
 
 
 NewMovie = Movie

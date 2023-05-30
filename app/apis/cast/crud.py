@@ -13,9 +13,9 @@ async def fn_create_cast(
     )
     
 async def fn_get_cast_by_imdb(
-    imdb: str,
+    imdb_id: str,
     casts_repo: CastsRepository,
 ) -> Cast:
     return await casts_repo.get_cast_imdb(
-        imdb=imdb,
+        imdb_id=imdb_id,
     )

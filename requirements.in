@@ -14,7 +14,7 @@ passlib
 pyjwt
 python-multipart
 uvicorn
-
+SPARQLWrapper
 # db
 psycopg2-binary
 databases[asyncpg]

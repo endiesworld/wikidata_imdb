@@ -19,11 +19,10 @@ depends_on = None
 def create_movies_table():
     op.create_table(
         "movies",
-        sa.Column("id", sa.INTEGER, primary_key=True, autoincrement=True, server_default="1"),
-        sa.Column("imdb_id", sa.VARCHAR(10), nullable=False, index=True),
+        sa.Column("imdb_id", sa.VARCHAR(10), nullable=False, index=True, primary_key=True),
         sa.Column("title", sa.VARCHAR, nullable=False, index=True),
         sa.Column("icaa_rating", sa.VARCHAR, nullable=True),
-        sa.Column("created_at", sa.TIMESTAMP, nullable=True),
+        sa.Column("created_at", sa.TIMESTAMP, nullable=True, server_default=sa.text("now()")),
         sa.Column("updated_at", sa.TIMESTAMP, nullable=True),
     )
     

@@ -19,10 +19,9 @@ depends_on = None
 def create_casts_table():
     op.create_table(
         "casts",
-        sa.Column("id", sa.INTEGER, primary_key=True, autoincrement=True, server_default="1"),
         sa.Column("imdb_id", sa.VARCHAR(10), nullable=False, index=True),
         sa.Column("name", sa.VARCHAR, nullable=True),
-        sa.Column("created_at", sa.TIMESTAMP, nullable=True),
+        sa.Column("created_at", sa.TIMESTAMP, nullable=True, server_default=sa.text("now()")),
         sa.Column("updated_at", sa.TIMESTAMP, nullable=True),
     )
 

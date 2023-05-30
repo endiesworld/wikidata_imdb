@@ -25,7 +25,7 @@ async def fn_create_production(
     productions_repo: ProductionsRepository,
 ) -> IDModelMixin:
     
-    production = NewProduction(
+    new_production = NewProduction(
         imdb_id=imdb_id, 
         director=director, 
         country=country, 
@@ -38,7 +38,7 @@ async def fn_create_production(
         date=date
         )
     
-    return crud.fn_create_production(production=production, productions_repo=productions_repo)
+    return await crud.fn_create_production(new_production=new_production, productions_repo=productions_repo)
 
 
 fn_get_production_by_imdb = crud.fn_get_production_by_imdb
