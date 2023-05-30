@@ -64,7 +64,7 @@ WHERE {
     ?icaa_rating rdfs:label ?icaa_ratingLabel.
   }
 }
-LIMIT 20000
+LIMIT 3
 """
 
 async def fn_query_wikidata_movies(
