@@ -1,13 +1,15 @@
 import pytest
 import pytest_asyncio
 from databases import Database
-from fastapi import FastAPI, status
+from fastapi import FastAPI
 from httpx import AsyncClient
 
 from app.apis.cast.crud import fn_create_cast, fn_get_cast_by_imdb
-from app.db.repositories import CastsRepository
+from app.apis.movie.crud import fn_create_movie
+from app.db.repositories import CastsRepository, MoviesRepository
 
 from app.models.domains.cast import NewCast, Cast
+from app.models.domains.movie import NewMovie
 from app.tests.helpers import fixed_data
 
 pytestmark = pytest.mark.asyncio
@@ -19,6 +21,9 @@ FUNCTION_TO_TEST = fn_get_cast_by_imdb
 def new_cast() -> NewCast:
     return fixed_data.new_cast()
 
+@pytest_asyncio.fixture(scope="class")
+def new_movie() -> NewMovie:
+    return fixed_data.new_movie()
 
 @pytest_asyncio.fixture(scope="class")
 async def setup(
@@ -26,12 +31,19 @@ async def setup(
     platform_client: AsyncClient,
     casts_repo: CastsRepository,
     new_cast: NewCast,
+    new_movie: NewMovie,
+    movies_repo: MoviesRepository,
     db: Database,
 ):
     async def do_teardown():
         await db.fetch_one("TRUNCATE TABLE casts CASCADE")
+        await db.fetch_one("TRUNCATE TABLE movies CASCADE")
 
     async def do_setup():
+        _ = await fn_create_movie(
+            new_movie,
+            movies_repo,
+        )
         movie_cast = await fn_create_cast(
             new_cast,
             casts_repo,

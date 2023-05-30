@@ -5,9 +5,11 @@ from fastapi import FastAPI
 from httpx import AsyncClient
 
 from app.apis.genre.crud import fn_create_genre, fn_get_genre_by_imdb
-from app.db.repositories import GenresRepository
+from app.apis.movie.crud import fn_create_movie
+from app.db.repositories import GenresRepository, MoviesRepository
 
 from app.models.domains.genre import NewGenre, Genre
+from app.models.domains.movie import NewMovie
 from app.tests.helpers import fixed_data
 
 pytestmark = pytest.mark.asyncio
@@ -19,6 +21,10 @@ FUNCTION_TO_TEST = fn_get_genre_by_imdb
 def new_genre() -> NewGenre:
     return fixed_data.new_genre()
 
+@pytest_asyncio.fixture(scope="class")
+def new_movie() -> NewMovie:
+    return fixed_data.new_movie()
+
 
 @pytest_asyncio.fixture(scope="class")
 async def setup(
@@ -26,12 +32,19 @@ async def setup(
     platform_client: AsyncClient,
     genres_repo: GenresRepository,
     new_genre: NewGenre,
+    new_movie: NewMovie,
+    movies_repo: MoviesRepository,
     db: Database,
 ):
     async def do_teardown():
         await db.fetch_one("TRUNCATE TABLE genres CASCADE")
+        await db.fetch_one("TRUNCATE TABLE movies CASCADE")
 
     async def do_setup():
+        _ = await fn_create_movie(
+            new_movie,
+            movies_repo,
+        )
         movie_genre = await fn_create_genre(
             new_genre,
             genres_repo,
